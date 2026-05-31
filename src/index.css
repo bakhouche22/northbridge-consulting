@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 99%;
+    --foreground: 215 47% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 47% 13%;
+    --primary: 216 57% 18%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 24% 94%;
+    --secondary-foreground: 216 57% 18%;
+    --muted: 214 28% 94%;
+    --muted-foreground: 215 18% 41%;
+    --accent: 184 41% 38%;
+    --accent-foreground: 0 0% 100%;
+    --border: 214 24% 88%;
+    --input: 214 24% 88%;
+    --ring: 184 41% 38%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-[0.16em] text-accent;
+  }
+}
