@@ -34,6 +34,7 @@ const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Recruitment", href: "/recruitment" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -69,6 +70,45 @@ const values = [
   "Evidence-led recommendations",
   "Practical delivery, not slideware",
   "Long-term trust with clients",
+];
+
+const recruitmentServices = [
+  {
+    title: "Executive Search",
+    icon: Target,
+    summary:
+      "Discreet senior-level search for leadership roles, specialist appointments, and growth-critical positions.",
+  },
+  {
+    title: "Talent Acquisition Strategy",
+    icon: BarChart3,
+    summary:
+      "Recruitment operating models, sourcing channels, assessment frameworks, and hiring governance built around business priorities.",
+  },
+  {
+    title: "Workforce Planning",
+    icon: Network,
+    summary:
+      "Practical workforce plans that connect future capability needs with structure, cost, timing, and delivery risk.",
+  },
+  {
+    title: "HR Process Optimization",
+    icon: CheckCircle2,
+    summary:
+      "Cleaner hiring workflows, clearer role approvals, better candidate experience, and more reliable recruitment reporting.",
+  },
+  {
+    title: "Employer Branding",
+    icon: ShieldCheck,
+    summary:
+      "Positioning, messaging, and candidate-facing materials that help organisations compete for the right talent.",
+  },
+  {
+    title: "Recruitment Across Europe",
+    icon: Building2,
+    summary:
+      "Support for cross-border hiring, local market understanding, and consistent recruitment standards across European teams.",
+  },
 ];
 
 const socialProfiles = [
@@ -464,6 +504,116 @@ function serviceDetails(title: string) {
   return details[title] ?? [];
 }
 
+function Recruitment() {
+  return (
+    <>
+      <PageIntro
+        eyebrow="Recruitment & Human Capital"
+        title="Human capital advisory for companies building stronger teams across Europe."
+        body="Northbridge Consulting supports organisations that need sharper hiring decisions, clearer workforce plans, and recruitment processes that reflect the quality of the business they are building."
+      />
+      <section className="section-spacing">
+        <div className="container-page">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <Badge>People, capability, and growth</Badge>
+              <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+                Recruitment support designed for strategic and operational impact.
+              </h2>
+            </div>
+            <p className="text-lg leading-8 text-muted-foreground">
+              Effective hiring is more than filling vacancies. We help clients define
+              the capabilities they need, improve how they attract and assess talent,
+              and build recruitment processes that are credible, consistent, and
+              scalable across markets.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {recruitmentServices.map((service) => (
+              <Card key={service.title} className="border-border/80 shadow-soft">
+                <CardHeader>
+                  <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-md bg-accent/12 text-accent">
+                    <service.icon className="h-5 w-5" />
+                  </div>
+                  <CardTitle>{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="leading-6">{service.summary}</CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary/60 section-spacing">
+        <div className="container-page grid gap-10 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="eyebrow">How we help</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              A practical partner from role definition to hiring execution.
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-muted-foreground">
+              We work with leadership, HR, and functional teams to clarify hiring
+              priorities, strengthen candidate evaluation, and reduce friction in
+              recruitment delivery. The result is a more disciplined hiring process
+              and a stronger connection between talent decisions and business goals.
+            </p>
+          </div>
+          <Card className="shadow-soft">
+            <CardHeader>
+              <CardTitle>Typical engagement outcomes</CardTitle>
+              <CardDescription>
+                Focused work that improves hiring confidence and organisational readiness.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="grid gap-3 text-sm text-muted-foreground">
+                {[
+                  "Clearer role briefs and leadership success profiles",
+                  "Improved recruitment workflows and decision points",
+                  "Stronger sourcing and assessment approach for priority roles",
+                  "Workforce plans aligned with growth, transformation, and cost goals",
+                  "Employer messaging that supports credible candidate engagement",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section className="section-spacing">
+        <div className="container-page rounded-lg bg-primary p-8 text-primary-foreground shadow-soft sm:p-10 lg:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/60">
+                Recruitment across Europe
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                Build the team your next stage requires.
+              </h2>
+              <p className="mt-4 max-w-3xl text-white/74">
+                Whether you are entering a new market, strengthening leadership, or
+                improving hiring performance, Northbridge brings structured thinking
+                and hands-on recruitment support to help you move with confidence.
+              </p>
+            </div>
+            <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 lg:justify-self-end">
+              <a href={`mailto:${contactEmail}`}>Discuss recruitment support</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function Contact() {
   return (
     <>
@@ -587,6 +737,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/recruitment" element={<Recruitment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
