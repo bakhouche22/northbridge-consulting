@@ -3,16 +3,13 @@ import {
   BarChart3,
   Building2,
   CheckCircle2,
-  Linkedin,
   Mail,
   MapPin,
   Menu,
-  MessageSquare,
   Network,
   Phone,
   ShieldCheck,
   Target,
-  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
@@ -28,7 +25,6 @@ import {
 import { cn } from "@/lib/utils";
 
 const contactEmail = "contact@northbridgeconsulting.com";
-const recommendedDomain = "northbridgeconsulting.com";
 
 const navigation = [
   { label: "Home", href: "/" },
@@ -108,30 +104,6 @@ const recruitmentServices = [
     icon: Building2,
     summary:
       "Support for cross-border hiring, local market understanding, and consistent recruitment standards across European teams.",
-  },
-];
-
-const socialProfiles = [
-  {
-    channel: "LinkedIn",
-    handle: "Northbridge Consulting",
-    icon: Linkedin,
-    description:
-      "A professional company page focused on strategy insight, transformation lessons, leadership commentary, and European business growth.",
-  },
-  {
-    channel: "X",
-    handle: "@NorthbridgeEU",
-    icon: X,
-    description:
-      "Short, thoughtful updates on market shifts, operating discipline, digital adoption, and practical growth ideas for executives.",
-  },
-  {
-    channel: "Facebook",
-    handle: "Northbridge Consulting",
-    icon: MessageSquare,
-    description:
-      "A credibility page for company updates, hiring announcements, local business content, and selected long-form posts.",
   },
 ];
 
@@ -620,7 +592,7 @@ function Contact() {
       <PageIntro
         eyebrow="Contact"
         title="Start a focused conversation about your next business priority."
-        body="For strategy, operating performance, digital transformation, or growth advisory enquiries, contact Northbridge Consulting using the company domain email below."
+        body="For strategy, operating performance, digital transformation, growth advisory, or recruitment enquiries, contact Northbridge Consulting to arrange a focused introductory conversation."
       />
       <section className="section-spacing">
         <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
@@ -628,7 +600,7 @@ function Contact() {
             <CardHeader>
               <CardTitle>Contact information</CardTitle>
               <CardDescription>
-                Professional business email using the recommended company domain.
+                Senior-led support for organisations working across Europe.
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-5">
@@ -664,46 +636,46 @@ function Contact() {
           <div className="grid gap-5">
             <Card>
               <CardHeader>
-                <CardTitle>Recommended domain and hosting</CardTitle>
+                <CardTitle>Engagement focus</CardTitle>
                 <CardDescription>
-                  A practical setup for a credible online presence.
+                  Practical consulting support shaped around clear business priorities.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="grid gap-4 text-sm leading-6 text-muted-foreground">
-                <p>
-                  Recommended domain: <strong className="text-foreground">{recommendedDomain}</strong>.
-                  It aligns with the company name, supports UK credibility, and keeps the email address clean.
-                </p>
-                <p>
-                  Recommended hosting: <strong className="text-foreground">Hostinger Business Web Hosting</strong>,
-                  paired with Hostinger Business Email or Google Workspace for professional mailboxes.
-                </p>
-                <p>
-                  Primary mailbox: <strong className="text-foreground">{contactEmail}</strong>.
-                  Additional aliases can include hello@, partners@, and careers@ as the firm grows.
-                </p>
+              <CardContent>
+                <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
+                  {[
+                    "Business strategy and operating model decisions",
+                    "Operational excellence and performance improvement",
+                    "Digital transformation planning and adoption",
+                    "Recruitment and human capital advisory",
+                    "Growth advisory and European market support",
+                    "Practical delivery support for leadership teams",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Social media profile kit</CardTitle>
+                <CardTitle>Response approach</CardTitle>
                 <CardDescription>
-                  Launch-ready positioning for LinkedIn, X, and Facebook.
+                  Initial conversations are focused, confidential, and practical.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="grid gap-4">
-                {socialProfiles.map((profile) => (
-                  <div key={profile.channel} className="flex gap-4 rounded-md border p-4">
-                    <profile.icon className="mt-1 h-5 w-5 shrink-0 text-accent" />
-                    <div>
-                      <p className="font-semibold">{profile.channel}: {profile.handle}</p>
-                      <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                        {profile.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              <CardContent className="grid gap-4 text-sm leading-6 text-muted-foreground">
+                <p>
+                  Share the business priority you want to discuss and a member of the
+                  team will respond with a suggested next step.
+                </p>
+                <p>
+                  Typical first discussions cover context, objectives, timing, and the
+                  practical support needed to move from intent to delivery.
+                </p>
               </CardContent>
             </Card>
           </div>
