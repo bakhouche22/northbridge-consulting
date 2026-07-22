@@ -8,26 +8,21 @@ Repository name:
 northbridge-consulting
 ```
 
-Recommended visibility:
+## Production Domain
+
+Official production website:
 
 ```text
-Private while building, public only if the client wants the source visible.
+https://northbridgeconsulting.solutions
 ```
-
-## Hosting
-
-This project is a Vite React website. Recommended deployment targets for this type of site:
-
-- Netlify
-- Vercel
-- Cloudflare Pages
-- Hostinger static hosting
 
 ## Netlify
 
-This project includes a `netlify.toml` file with the production build settings.
+This project is deployed through the existing Netlify site. The repository includes a `netlify.toml` file with the production build settings.
 
-## Suggested Build Settings
+Do not create a new Netlify site for routine production updates.
+
+## Build Settings
 
 Build command:
 
