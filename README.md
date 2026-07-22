@@ -15,7 +15,20 @@ Professional website for Northbridge Consulting, a UK-founded business consultin
 - Home
 - About
 - Services
+- Recruitment
 - Contact
+
+## Production Website
+
+```text
+https://northbridgeconsulting.solutions
+```
+
+## Contact Email
+
+```text
+contact@northbridgeconsulting.solutions
+```
 
 ## Run Locally
 
@@ -45,15 +58,3 @@ npm run build
 ```
 
 The production files are generated in `dist/`.
-
-## Contact Email
-
-```text
-contact@northbridgeconsulting.com
-```
-
-## Recommended Domain
-
-```text
-northbridgeconsulting.com
-```
