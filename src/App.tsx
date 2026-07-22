@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Target,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SVGProps } from "react";
 import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,58 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-const contactEmail = "contact@northbridgeconsulting.com";
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+    __northbridgeAnalyticsLoaded?: boolean;
+  }
+}
+
+const siteUrl = "https://northbridgeconsulting.solutions";
+const contactEmail = "contact@northbridgeconsulting.solutions";
+const gaMeasurementId = "G-4348K6E53L";
+
+const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/northbridge-consulting-solutions-144819423/",
+    icon: LinkedInIcon,
+  },
+  {
+    label: "X",
+    href: "https://x.com/Northbridgecons",
+    icon: XIcon,
+  },
+];
+
+const pageMetadata: Record<string, { title: string; description: string }> = {
+  "/": {
+    title: "Northbridge Consulting | Business Consulting Across Europe",
+    description:
+      "Northbridge Consulting is a UK-founded business consulting firm helping European organisations with strategy, operations, digital transformation, growth, and human capital.",
+  },
+  "/about": {
+    title: "About Northbridge Consulting | UK-Founded European Advisory Firm",
+    description:
+      "Learn about Northbridge Consulting, a UK-founded advisory firm supporting European organisations with clear, practical, and commercially grounded consulting.",
+  },
+  "/services": {
+    title: "Consulting Services | Strategy, Operations, Digital and Growth",
+    description:
+      "Explore Northbridge Consulting services across business strategy, operational excellence, digital transformation, and growth advisory for European organisations.",
+  },
+  "/recruitment": {
+    title: "Recruitment & Human Capital | Northbridge Consulting",
+    description:
+      "Human capital consulting, executive search, talent acquisition strategy, workforce planning, HR process optimization, and recruitment support across Europe.",
+  },
+  "/contact": {
+    title: "Contact Northbridge Consulting | European Business Consulting",
+    description:
+      "Contact Northbridge Consulting for strategy, operations, digital transformation, growth advisory, recruitment, and human capital consulting across Europe.",
+  },
+};
 
 const navigation = [
   { label: "Home", href: "/" },
@@ -106,6 +157,154 @@ const recruitmentServices = [
       "Support for cross-border hiring, local market understanding, and consistent recruitment standards across European teams.",
   },
 ];
+
+function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" {...props}>
+      <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.3 8.25h4.4V23H.3V8.25Zm7.24 0h4.22v2.02h.06c.59-1.12 2.03-2.3 4.18-2.3 4.47 0 5.3 2.94 5.3 6.76V23h-4.4v-7.33c0-1.75-.03-4-2.44-4-2.44 0-2.81 1.9-2.81 3.87V23H7.54V8.25Z" />
+    </svg>
+  );
+}
+
+function XIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" {...props}>
+      <path d="M18.9 2h3.68l-8.04 9.19L24 22h-7.41l-5.8-7.58L4.15 22H.47l8.6-9.83L0 2h7.59l5.24 6.93L18.9 2Zm-1.29 18.1h2.04L6.48 3.8H4.29L17.61 20.1Z" />
+    </svg>
+  );
+}
+
+function SocialLinks({ variant = "contact" }: { variant?: "contact" | "footer" }) {
+  const linkClassName =
+    variant === "footer"
+      ? "border-white/15 bg-white/5 text-white/78 hover:bg-white/12 hover:text-white focus-visible:ring-white/50"
+      : "border-border bg-background text-muted-foreground hover:border-accent/50 hover:text-foreground focus-visible:ring-accent";
+
+  return (
+    <div className="flex items-center gap-3">
+      {socialLinks.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open Northbridge Consulting ${link.label} profile in a new tab`}
+          className={cn(
+            "inline-flex h-10 w-10 items-center justify-center rounded-md border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+            linkClassName,
+            variant === "footer" && "focus-visible:ring-offset-primary",
+          )}
+        >
+          <link.icon className="h-4 w-4" />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function upsertMeta(attribute: "name" | "property", key: string, content: string) {
+  let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
+
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("content", content);
+}
+
+function upsertCanonical(href: string) {
+  let element = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+
+  if (!element) {
+    element = document.createElement("link");
+    element.setAttribute("rel", "canonical");
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("href", href);
+}
+
+function shouldLoadAnalytics() {
+  return (
+    import.meta.env.PROD &&
+    typeof window !== "undefined" &&
+    ["northbridgeconsulting.solutions", "www.northbridgeconsulting.solutions"].includes(
+      window.location.hostname,
+    )
+  );
+}
+
+function loadAnalytics() {
+  if (!shouldLoadAnalytics() || window.__northbridgeAnalyticsLoaded) {
+    return;
+  }
+
+  window.__northbridgeAnalyticsLoaded = true;
+  window.dataLayer = window.dataLayer ?? [];
+  window.gtag = (...args: unknown[]) => {
+    window.dataLayer?.push(args);
+  };
+  window.gtag("js", new Date());
+  window.gtag("config", gaMeasurementId, { send_page_view: false });
+
+  const script = document.createElement("script");
+  script.id = "northbridge-ga4";
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
+  document.head.appendChild(script);
+}
+
+function trackPageView(pathname: string) {
+  if (!shouldLoadAnalytics() || !window.gtag) {
+    return;
+  }
+
+  const metadata = pageMetadata[pathname] ?? pageMetadata["/"];
+  window.gtag("config", gaMeasurementId, {
+    page_title: metadata.title,
+    page_path: pathname,
+    page_location: `${siteUrl}${pathname}`,
+  });
+}
+
+function SeoAndAnalytics() {
+  const { pathname } = useLocation();
+  const metadata = pageMetadata[pathname] ?? pageMetadata["/"];
+  const isKnownPage = Boolean(pageMetadata[pathname]);
+  const canonicalUrl = `${siteUrl}${isKnownPage && pathname !== "/" ? pathname : ""}`;
+  const imageUrl = `${siteUrl}/assets/northbridge-hero.jpg`;
+
+  useEffect(() => {
+    document.title = metadata.title;
+    upsertMeta("name", "description", metadata.description);
+    upsertMeta("name", "robots", isKnownPage ? "index, follow" : "noindex, follow");
+    upsertMeta("property", "og:title", metadata.title);
+    upsertMeta("property", "og:description", metadata.description);
+    upsertMeta("property", "og:url", canonicalUrl);
+    upsertMeta("property", "og:image", imageUrl);
+    upsertMeta("property", "og:type", "website");
+    upsertMeta("property", "og:site_name", "Northbridge Consulting");
+    upsertMeta("name", "twitter:card", "summary_large_image");
+    upsertMeta("name", "twitter:title", metadata.title);
+    upsertMeta("name", "twitter:description", metadata.description);
+    upsertMeta("name", "twitter:site", "@Northbridgecons");
+    upsertMeta("name", "twitter:url", canonicalUrl);
+    upsertMeta("name", "twitter:image", imageUrl);
+    upsertCanonical(canonicalUrl);
+  }, [canonicalUrl, imageUrl, isKnownPage, metadata.description, metadata.title]);
+
+  useEffect(() => {
+    loadAnalytics();
+  }, []);
+
+  useEffect(() => {
+    trackPageView(pathname);
+  }, [pathname]);
+
+  return null;
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -230,6 +429,9 @@ function Footer() {
             {contactEmail}
           </a>
           <p className="mt-2 text-sm text-white/72">Serving clients across Europe</p>
+          <div className="mt-5">
+            <SocialLinks variant="footer" />
+          </div>
         </div>
       </div>
       <div className="border-t border-white/10 py-5">
@@ -627,6 +829,15 @@ function Contact() {
                   <p className="text-muted-foreground">Introductory calls by appointment.</p>
                 </div>
               </div>
+              <div className="flex items-start gap-4">
+                <Network className="mt-1 h-5 w-5 text-accent" />
+                <div>
+                  <p className="font-semibold">Social profiles</p>
+                  <div className="mt-2">
+                    <SocialLinks />
+                  </div>
+                </div>
+              </div>
               <Button asChild size="lg" className="mt-2">
                 <a href={`mailto:${contactEmail}`}>Email Northbridge Consulting</a>
               </Button>
@@ -702,6 +913,7 @@ function NotFound() {
 function App() {
   return (
     <div className="min-h-screen">
+      <SeoAndAnalytics />
       <ScrollToTop />
       <Header />
       <main>
