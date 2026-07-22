@@ -1,36 +1,19 @@
-# Domain and Hosting Recommendation
+# Production Domain and Contact
 
-## Recommended domain
+## Official Production Domain
 
-Primary recommendation: `northbridgeconsulting.com`
+The official production website is:
 
-Why this works:
-- It matches the company name closely.
-- It keeps the company name clear and internationally credible.
-- It creates a clean professional email address: `contact@northbridgeconsulting.com`.
+```text
+https://northbridgeconsulting.solutions
+```
 
-Final availability and pricing for `northbridgeconsulting.com` should be confirmed inside the registrar checkout before purchase.
+## Professional Contact Email
 
-Alternative domains checked as likely available:
-- `northbridgeadvisoryeurope.com`
-- `northbridgeeuropeconsulting.com`
-- `northbridgegrowthadvisory.com`
-- `northbridgeadvisory.uk`
+```text
+contact@northbridgeconsulting.solutions
+```
 
-## Recommended provider
+## Deployment Note
 
-Recommended setup: Hostinger Business Web Hosting plus Hostinger Business Email, or Google Workspace if the firm wants the Gmail/Calendar/Drive ecosystem.
-
-Provider references:
-- Hostinger Business Email supports custom domain business email: https://www.hostinger.com/business-email
-- Google Workspace supports business email using a custom company domain: https://workspace.google.com/solutions/business-email/
-
-Suggested email setup:
-- `contact@northbridgeconsulting.com`
-- `hello@northbridgeconsulting.com`
-- `partners@northbridgeconsulting.com`
-- `careers@northbridgeconsulting.com`
-
-## Deployment note
-
-This website is a Vite React static site. It can be hosted on Hostinger, Cloudflare Pages, Netlify, or Vercel. For the simplest all-in-one business setup with domain registration, hosting, SSL, and email, Hostinger is the practical recommendation.
+This website is a Vite React static site deployed through the existing Netlify configuration. Do not create a new Netlify site for routine production updates.
