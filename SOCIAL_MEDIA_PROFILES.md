@@ -4,6 +4,8 @@
 
 Company name: Northbridge Consulting
 
+Profile URL: https://www.linkedin.com/in/northbridge-consulting-solutions-144819423/
+
 Tagline: Strategy, operations, digital transformation, and growth advisory for European businesses.
 
 About:
@@ -19,7 +21,9 @@ Example posts:
 
 ## X
 
-Handle: @NorthbridgeEU
+Handle: @Northbridgecons
+
+Profile URL: https://x.com/Northbridgecons
 
 Bio:
 UK-founded consulting firm supporting European businesses with strategy, operations, digital transformation, and growth advisory.
@@ -45,4 +49,4 @@ Example posts:
 
 2. Our work focuses on four areas: business strategy, operational excellence, digital transformation, and growth advisory. Each engagement is designed to create clarity and measurable progress.
 
-3. For enquiries, contact our team at contact@northbridgeconsulting.com.
+3. For enquiries, contact our team at contact@northbridgeconsulting.solutions.
