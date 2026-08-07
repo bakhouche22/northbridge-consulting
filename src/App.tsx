@@ -75,6 +75,11 @@ const pageMetadata: Record<string, { title: string; description: string }> = {
     description:
       "Contact Northbridge Consulting for strategy, operations, digital transformation, growth advisory, recruitment, and human capital consulting across Europe.",
   },
+  "/privacy-policy": {
+    title: "Privacy Policy | Northbridge Consulting",
+    description:
+      "Read the Northbridge Consulting privacy policy, including how information is collected, used, retained, secured, and handled under GDPR.",
+  },
 };
 
 const navigation = [
@@ -419,6 +424,9 @@ function Footer() {
                 {item.label}
               </Link>
             ))}
+            <Link to="/privacy-policy" className="text-sm text-white/78 hover:text-white">
+              Privacy Policy
+            </Link>
           </div>
         </div>
         <div>
@@ -896,6 +904,130 @@ function Contact() {
   );
 }
 
+const privacySections = [
+  {
+    title: "Introduction",
+    body: [
+      "This Privacy Policy explains how Northbridge Consulting handles personal information when you visit https://northbridgeconsulting.solutions, contact us, or engage with our consulting and recruitment services.",
+      "Northbridge Consulting is committed to handling personal data responsibly, transparently, and in line with applicable data protection requirements, including the UK GDPR and EU GDPR where relevant.",
+    ],
+  },
+  {
+    title: "Information We Collect",
+    body: [
+      "We may collect information you choose to provide, such as your name, role, organisation, email address, enquiry details, and any information included in messages, proposals, or business correspondence.",
+      "We may also collect limited technical information about website usage, such as pages visited, browser type, device information, and general analytics data, where analytics tools are enabled on the production website.",
+    ],
+  },
+  {
+    title: "How We Use Your Information",
+    body: [
+      "We use personal information to respond to enquiries, manage client relationships, assess potential engagements, provide consulting services, improve our website, and maintain appropriate business records.",
+      "We do not sell personal information. Where we work with trusted service providers, information is shared only where necessary for legitimate business, operational, legal, or technical purposes.",
+    ],
+  },
+  {
+    title: "Recruitment Data",
+    body: [
+      "Where Northbridge Consulting supports recruitment or human capital assignments, we may process candidate, client, and hiring-related information provided directly to us or by authorised business contacts.",
+      "Recruitment data may include professional background, role requirements, CV or profile information, interview feedback, availability, and other details relevant to assessing suitability for a role or assignment.",
+    ],
+  },
+  {
+    title: "Data Retention",
+    body: [
+      "We retain personal information only for as long as reasonably necessary for the purposes described in this policy, including responding to enquiries, delivering services, maintaining business records, and meeting legal or regulatory obligations.",
+      "When information is no longer required, we take reasonable steps to delete, anonymise, or securely archive it in line with our business needs and applicable requirements.",
+    ],
+  },
+  {
+    title: "Data Security",
+    body: [
+      "We use reasonable organisational and technical measures to protect personal information from unauthorised access, loss, misuse, alteration, or disclosure.",
+      "No website, email system, or digital service can be guaranteed to be completely secure, but we work to handle information carefully and limit access to those with a legitimate business need.",
+    ],
+  },
+  {
+    title: "Your Rights under GDPR",
+    body: [
+      "Depending on your location and the circumstances of processing, you may have rights to access, correct, delete, restrict, or object to the processing of your personal information.",
+      "You may also have the right to request data portability or withdraw consent where processing is based on consent. To exercise these rights, please contact us using the email address below.",
+    ],
+  },
+  {
+    title: "Contact Information",
+    body: [
+      "If you have questions about this Privacy Policy or how Northbridge Consulting handles personal information, please contact us at contact@northbridgeconsulting.solutions.",
+      "Website: https://northbridgeconsulting.solutions",
+    ],
+  },
+];
+
+function PrivacyPolicy() {
+  return (
+    <>
+      <PageIntro
+        eyebrow="Privacy Policy"
+        title="How Northbridge Consulting handles personal information."
+        body="This policy explains what information we may collect, how we use it, how long we keep it, and the rights available to individuals under GDPR."
+      />
+      <section className="section-spacing">
+        <div className="container-page">
+          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+            <aside className="rounded-lg border bg-card p-6 shadow-soft lg:sticky lg:top-28">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">
+                Northbridge Consulting
+              </p>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight">Privacy at a glance</h2>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                We process personal information for legitimate business purposes,
+                including enquiries, consulting engagements, recruitment assignments,
+                relationship management, and website improvement.
+              </p>
+              <div className="mt-6 grid gap-3 text-sm">
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="font-semibold text-accent hover:text-foreground"
+                >
+                  {contactEmail}
+                </a>
+                <a
+                  href={siteUrl}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  {siteUrl}
+                </a>
+              </div>
+            </aside>
+
+            <div className="grid gap-5">
+              {privacySections.map((section, index) => (
+                <Card key={section.title} className="shadow-soft">
+                  <CardHeader>
+                    <p className="text-sm font-semibold text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <CardTitle>{section.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="grid gap-4 text-sm leading-7 text-muted-foreground sm:text-base">
+                    {section.body.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </CardContent>
+                </Card>
+              ))}
+
+              <div className="rounded-lg bg-secondary/70 p-6 text-sm font-semibold text-muted-foreground">
+                Last updated: August 2026
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function NotFound() {
   return (
     <section className="section-spacing">
@@ -923,6 +1055,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/recruitment" element={<Recruitment />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
@@ -932,3 +1065,5 @@ function App() {
 }
 
 export default App;
+
+
